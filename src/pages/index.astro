@@ -1,0 +1,44 @@
+---
+import CatGroups from "../components/CatGroups.astro";
+
+// fetch cats from google sheet
+const res = await fetch(
+	"https://script.google.com/macros/s/AKfycbzy_i6slqQaiFsOE0Ks-u8xWshdrswLBXc2xelM6ep-f45fgtN9f_RQ8TfwnqLYCLRb-Q/exec"
+);
+const { data } = await res.json();
+
+const groupedCats = data.reduce((acc, curr) => {
+	if (!acc[curr.date]) {
+		acc[curr.date] = [];
+	}
+	acc[curr.date].push(curr.cat);
+	return acc;
+}, {});
+
+// sort groupedCats by date descending
+const sortedGroupedCats = Object.entries(groupedCats).sort((a, b) => {
+	const dateA = new Date(a[0]);
+	const dateB = new Date(b[0]);
+	return dateB.getTime() - dateA.getTime();
+});
+
+const catsByDate = sortedGroupedCats.map(([date, cats]) => {
+	return {
+		date,
+		cats,
+	};
+});
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro</title>
+	</head>
+	<body>
+		<CatGroups catsByDate={catsByDate} />
+	</body>
+</html>

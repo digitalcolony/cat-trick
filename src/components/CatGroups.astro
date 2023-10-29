@@ -1,0 +1,20 @@
+---
+// Assign props
+const { catsByDate } = Astro.props;
+---
+
+<div>
+	{
+		catsByDate.map((group) => (
+			<div>
+				<p>{group.date}</p>
+
+				<ul>
+					{group.cats.map((cat) => (
+						<li>{cat}</li>
+					))}
+				</ul>
+			</div>
+		))
+	}
+</div>
