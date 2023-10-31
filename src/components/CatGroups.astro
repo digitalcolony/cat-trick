@@ -3,11 +3,21 @@
 const { catsByDate } = Astro.props;
 ---
 
+<style>
+	.winner {
+		border: 1px dashed navy;
+		padding: 5px;
+	}
+	.regular {
+		padding: 5px;
+	}
+</style>
+
 <div>
 	{
 		catsByDate.map((group) => (
-			<div>
-				<p>{group.date}</p>
+			<div class={group.cats.length >= 3 ? "winner" : "regular"}>
+				<h5>{group.date}</h5>
 
 				<ul>
 					{group.cats.map((cat) => (
