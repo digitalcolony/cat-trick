@@ -33,12 +33,15 @@ const catsByDate = sortedGroupedCats.map(([date, cats]) => {
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<link rel="icon" type="image/png" href="/cat.png" />
+		<title>Cat Trick - Meeting the Cats of Ballard</title>
+		<link rel="stylesheet" href="https://unpkg.com/mvp.css" />
 	</head>
 	<body>
-		<CatGroups catsByDate={catsByDate} />
+		<main>
+			<CatGroups catsByDate={catsByDate} />
+		</main>
 	</body>
 </html>
