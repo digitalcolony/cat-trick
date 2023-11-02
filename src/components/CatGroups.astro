@@ -11,19 +11,65 @@ const { catsByDate } = Astro.props;
 	.regular {
 		padding: 5px;
 	}
+
+	ul {
+		list-style-type: none;
+		padding: 0;
+	}
+
+	li {
+		margin-bottom: 5px;
+	}
+
+	.rounded {
+		border-radius: 8px;
+	}
+	hr {
+		height: 1px;
+		background-color: black;
+	}
+	@media (min-width: 768px) {
+		ul {
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+		li {
+			flex: 1 1 400px;
+			margin-right: 10px;
+		}
+	}
 </style>
 
 <div>
 	{
 		catsByDate.map((group) => (
-			<div class={group.cats.length >= 3 ? "winner" : "regular"}>
-				<h5>{group.date}</h5>
+			<div>
+				<h3>
+					{group.date} {group.cats.length >= 3 ? "🏆" : ""}
+				</h3>
 
 				<ul>
-					{group.cats.map((cat) => (
-						<li>{cat}</li>
-					))}
+					{group.cats.map((cat) => {
+						const catHyphen = cat.replace(/\s+/g, "-").toLowerCase();
+
+						return (
+							<li>
+								<img
+									src={`/${catHyphen}.jpg`}
+									alt={cat}
+									width="380px"
+									height="380px"
+									class="rounded"
+								/>
+								<p>
+									<strong>{cat}</strong>
+								</p>
+							</li>
+						);
+					})}
 				</ul>
+				<hr />
 			</div>
 		))
 	}
