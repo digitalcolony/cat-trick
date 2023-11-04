@@ -12,6 +12,7 @@ import gerald from "../assets/gerald.jpg";
 import roket from "../assets/roket.jpg";
 import scarlett from "../assets/scarlett.jpg";
 import thunder from "../assets/thunder.jpg";
+import nophoto from "../assets/nophoto.jpg";
 
 const { catsByDate } = Astro.props;
 
@@ -31,7 +32,9 @@ function formatDate(dateStr) {
 		catsByDate.map((group) => (
 			<>
 				<p class="center date">
-					{formatDate(group.date)} {group.cats.length >= 3 ? "🏆" : ""}
+					{group.cats.length >= 3 ? "🏆 " : ""}
+					{formatDate(group.date)}
+					{group.cats.length >= 3 ? " 🏆" : ""}
 				</p>
 				<div class="image-row">
 					{group.cats.map((cat) => {
@@ -71,7 +74,7 @@ function formatDate(dateStr) {
 								catImport = thunder;
 								break;
 							default:
-								catImport = akima;
+								catImport = nophoto;
 						}
 						return (
 							<figure>

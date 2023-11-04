@@ -11,13 +11,13 @@ main {
 	margin: 0 auto;
 	max-width: 1240px;
 }
-
 .catlist {
 	margin-top: 40px;
 }
 
 .date {
 	font-family: monospace, monospace;
+	font-size: 1.2rem;
 }
 
 .image-row {
