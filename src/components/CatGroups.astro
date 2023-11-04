@@ -1,76 +1,87 @@
 ---
-// Assign props
+import { Picture } from "astro:assets";
+
+import akima from "../assets/akima.jpg";
+import boo from "../assets/boo.jpg";
+import buddy from "../assets/buddy.jpg";
+import captainjack from "../assets/captain-jack.jpg";
+import checkers from "../assets/checkers.jpg";
+import chucky from "../assets/chucky.jpg";
+import frankthetank from "../assets/frank-the-tank.jpg";
+import gerald from "../assets/gerald.jpg";
+import roket from "../assets/roket.jpg";
+import scarlett from "../assets/scarlett.jpg";
+import thunder from "../assets/thunder.jpg";
+
 const { catsByDate } = Astro.props;
+
+function formatDate(dateStr) {
+	const dateObj = new Date(dateStr);
+
+	const month = new Intl.DateTimeFormat("en-US", { month: "long" }).format(dateObj);
+	const day = dateObj.getDate();
+	const year = dateObj.getFullYear();
+
+	return `${month} ${day}, ${year}`;
+}
 ---
 
-<style>
-	.winner {
-		border: 1px dashed navy;
-		padding: 5px;
-	}
-	.regular {
-		padding: 5px;
-	}
-
-	ul {
-		list-style-type: none;
-		padding: 0;
-	}
-
-	li {
-		margin-bottom: 5px;
-	}
-
-	.rounded {
-		border-radius: 8px;
-	}
-	hr {
-		height: 1px;
-		background-color: black;
-	}
-	@media (min-width: 768px) {
-		ul {
-			display: flex;
-			flex-wrap: wrap;
-		}
-
-		li {
-			flex: 1 1 400px;
-			margin-right: 10px;
-		}
-	}
-</style>
-
-<div>
+<div class="catlist">
 	{
 		catsByDate.map((group) => (
-			<div>
-				<h3>
-					{group.date} {group.cats.length >= 3 ? "🏆" : ""}
-				</h3>
-
-				<ul>
+			<>
+				<p class="center date">
+					{formatDate(group.date)} {group.cats.length >= 3 ? "🏆" : ""}
+				</p>
+				<div class="image-row">
 					{group.cats.map((cat) => {
-						const catHyphen = cat.replace(/\s+/g, "-").toLowerCase();
-
+						let catImport = cat.replace(/\s+/g, "").toLowerCase();
+						switch (catImport) {
+							case "akima":
+								catImport = akima;
+								break;
+							case "boo":
+								catImport = boo;
+								break;
+							case "buddy":
+								catImport = buddy;
+								break;
+							case "captainjack":
+								catImport = captainjack;
+								break;
+							case "checkers":
+								catImport = checkers;
+								break;
+							case "chucky":
+								catImport = chucky;
+								break;
+							case "frankthetank":
+								catImport = frankthetank;
+								break;
+							case "gerald":
+								catImport = gerald;
+								break;
+							case "roket":
+								catImport = roket;
+								break;
+							case "scarlett":
+								catImport = scarlett;
+								break;
+							case "thunder":
+								catImport = thunder;
+								break;
+							default:
+								catImport = akima;
+						}
 						return (
-							<li>
-								<img
-									src={`/${catHyphen}.jpg`}
-									alt={cat}
-									width="380px"
-									height="380px"
-									class="rounded"
-								/>
-								<p>
-									<strong>{cat}</strong>
-								</p>
-							</li>
+							<figure>
+								<Picture src={catImport} formats={["avif", "webp"]} alt={cat} />
+								<figcaption>{cat}</figcaption>
+							</figure>
 						);
 					})}
-				</ul>
-				<hr />
-			</div>
+				</div>
+			</>
 		))
 	}
 </div>

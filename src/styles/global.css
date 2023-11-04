@@ -1,0 +1,42 @@
+@import url("https://fonts.cdnfonts.com/css/open-sans");
+
+body {
+	margin: 0;
+	padding: 0;
+	background: #fde7c9;
+	font-family: "Open Sans", sans-serif;
+}
+
+main {
+	margin: 0 auto;
+	max-width: 1240px;
+}
+
+.catlist {
+	margin-top: 40px;
+}
+
+.date {
+	font-family: monospace, monospace;
+}
+
+.image-row {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.image-row img {
+	border-radius: 8px;
+	margin-left: 5px;
+	margin-right: 5px;
+	width: 300px;
+	height: 300px;
+}
+
+figcaption {
+	text-align: center;
+}
+.center {
+	text-align: center;
+}

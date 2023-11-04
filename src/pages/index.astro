@@ -1,4 +1,5 @@
 ---
+import Layout from "../layouts/Layout.astro";
 import CatGroups from "../components/CatGroups.astro";
 
 // fetch cats from google sheet
@@ -30,20 +31,14 @@ const catsByDate = sortedGroupedCats.map(([date, cats]) => {
 });
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<link rel="icon" type="image/png" href="/cat.png" />
-		<title>Cat Trick - Meeting the Cats of Ballard</title>
-		<link rel="stylesheet" href="https://unpkg.com/mvp.css" />
-	</head>
-	<body style="background-color: #faeab9;">
-		<main>
-			<h1>😻 Cat Trick</h1>
-			<p>Meeting the cats of Ballard. 3 cats in 1 day = a cat trick! 🏆</p>
-			<CatGroups catsByDate={catsByDate} />
-		</main>
-	</body>
-</html>
+<Layout
+	title="😻 Cat Trick - Meeting the Cats of Ballard"
+	description="Meeting the cats of Ballard. 3 cats in 1 day = a cat trick! 🏆"
+	url=""
+>
+	<main>
+		<h1 class="center">😻 Cat Trick</h1>
+		<p class="center">Meeting the cats of Ballard. 3 cats in 1 day = a cat trick! 🏆</p>
+		<CatGroups catsByDate={catsByDate} />
+	</main>
+</Layout>
