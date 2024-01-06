@@ -1,6 +1,7 @@
 ---
 import { Picture } from "astro:assets";
 
+import abbey from "../assets/abbey.jpg";
 import akima from "../assets/akima.jpg";
 import boo from "../assets/boo.jpg";
 import buddy from "../assets/buddy.jpg";
@@ -43,6 +44,9 @@ function formatDate(dateStr) {
 					{group.cats.map((cat) => {
 						let catImport = cat.replace(/\s+/g, "").toLowerCase();
 						switch (catImport) {
+							case "abbey":
+								catImport = abbey;
+								break;
 							case "akima":
 								catImport = akima;
 								break;
