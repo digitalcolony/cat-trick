@@ -14,6 +14,7 @@ import royal from "../assets/royal.jpg";
 import scarlett from "../assets/scarlett.jpg";
 import tiger from "../assets/tiger.jpg";
 import thunder from "../assets/thunder.jpg";
+import turtle from "../assets/turtle.jpg";
 import nophoto from "../assets/nophoto.jpg";
 
 export default function CatListByDate({ catsByDate }) {
@@ -92,6 +93,9 @@ export default function CatListByDate({ catsByDate }) {
 				break;
 			case "thunder":
 				catImport = thunder;
+				break;
+			case "turtle":
+				catImport = turtle;
 				break;
 			default:
 				catImport = nophoto;

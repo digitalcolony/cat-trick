@@ -8,6 +8,12 @@ In my Seattle neighborhood of Ballard, sometimes cats will come up and greet me.
 
 I am using Zapier to trigger a site build on Netlify when the Google Form is submitted. This lets me use the Astro static site generation. Originally, I used the server-side option with the netlify adaptor, but it was too slow.
 
+## 2 versions
+
+CatGroups.astro was used in the initial Server Side version.
+
+CatListbyData.jsx is the client side React version that allows for infinite scrolling.
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
