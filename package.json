@@ -10,9 +10,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/netlify": "^4.1.1",
+    "@astrojs/netlify": "^5.0.0",
     "@astrojs/react": "^3.0.9",
-    "astro": "^4.1.2",
+    "astro": "^4.3.0",
     "astro-meta-tags": "^0.2.1"
   }
 }

@@ -14,6 +14,12 @@ CatGroups.astro was used in the initial Server Side version.
 
 CatListbyData.jsx is the client side React version that allows for infinite scrolling.
 
+## Future Features
+
+Dark Mode
+
+Custom 404
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
