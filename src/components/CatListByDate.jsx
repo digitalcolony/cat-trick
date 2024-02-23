@@ -11,7 +11,8 @@ import gerald from "../assets/gerald.jpg";
 import roket from "../assets/roket.jpg";
 import royal from "../assets/royal.jpg";
 import scarlett from "../assets/scarlett.jpg";
-import sticksthecat from "../assets/sticks-the-cat.jpg";
+import stixthecat from "../assets/stix-the-cat.jpg";
+import sunny from "../assets/sunny.jpg";
 import tiger from "../assets/tiger.jpg";
 import thunder from "../assets/thunder.jpg";
 import turtle from "../assets/turtle.jpg";
@@ -85,8 +86,11 @@ export default function CatListByDate({ catsByDate }) {
 			case "scarlett":
 				catImport = scarlett;
 				break;
-			case "sticksthecat":
-				catImport = sticksthecat;
+			case "stixthecat":
+				catImport = stixthecat;
+				break;
+			case "sunny":
+				catImport = sunny;
 				break;
 			case "tiger":
 				catImport = tiger;
