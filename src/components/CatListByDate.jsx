@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 
-import abbey from "../assets/abbey.jpg";
 import akima from "../assets/akima.jpg";
 import boo from "../assets/boo.jpg";
 import buddy from "../assets/buddy.jpg";
@@ -12,6 +11,7 @@ import gerald from "../assets/gerald.jpg";
 import roket from "../assets/roket.jpg";
 import royal from "../assets/royal.jpg";
 import scarlett from "../assets/scarlett.jpg";
+import sticksthecat from "../assets/sticks-the-cat.jpg";
 import tiger from "../assets/tiger.jpg";
 import thunder from "../assets/thunder.jpg";
 import turtle from "../assets/turtle.jpg";
@@ -52,9 +52,6 @@ export default function CatListByDate({ catsByDate }) {
 		let catImport = cat.replace(/\s+/g, "").toLowerCase();
 
 		switch (catImport) {
-			case "abbey":
-				catImport = abbey;
-				break;
 			case "akima":
 				catImport = akima;
 				break;
@@ -87,6 +84,9 @@ export default function CatListByDate({ catsByDate }) {
 				break;
 			case "scarlett":
 				catImport = scarlett;
+				break;
+			case "sticksthecat":
+				catImport = sticksthecat;
 				break;
 			case "tiger":
 				catImport = tiger;
