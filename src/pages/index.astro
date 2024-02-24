@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import CatGroups from "../components/CatGroups.astro";
 import CatsListByDate from "../components/CatListByDate";
+import CatListByDate from "../components/CatListByDate";
 
 // fetch cats from google sheet
 const res = await fetch(
@@ -50,6 +51,6 @@ const catsByDate = sortedGroupedCats.map(([date, cats]) => {
 				apart.
 			</em>
 		</p>
-		<CatsListByDate catsByDate={catsByDate} client:load />
+		{catsByDate.length > 0 && <CatListByDate catsByDate={catsByDate} client:load />}
 	</main>
 </Layout>
