@@ -45,12 +45,7 @@ const catsByDate = sortedGroupedCats.map(([date, cats]) => {
 				>Betty, Royal, Sunny, Tiger, Thunder, and Turtle are nicknames. All other names are real.</em
 			>
 		</p>
-		<p class="center">
-			<em>
-				Frank the Tank and Gerald look the same and live close to each other. They are hard to tell
-				apart.
-			</em>
-		</p>
+
 		{catsByDate.length > 0 && <CatListByDate catsByDate={catsByDate} client:load />}
 	</main>
 </Layout>
