@@ -10,6 +10,7 @@ import chucky from "../assets/chucky.jpg";
 import emmy from "../assets/emmy.jpg";
 import frankthetank from "../assets/frank-the-tank.jpg";
 import gerald from "../assets/gerald.jpg";
+import gizmo from "../assets/gizmo.jpg";
 import muffin from "../assets/muffin.jpg";
 import pezzetina from "../assets/pezzetina.jpg";
 import roket from "../assets/roket.jpg";
@@ -86,6 +87,9 @@ export default function CatListByDate({ catsByDate }) {
 				break;
 			case "gerald":
 				catImport = gerald;
+				break;
+			case "gizmo":
+				catImport = gizmo;
 				break;
 			case "muffin":
 				catImport = muffin;
