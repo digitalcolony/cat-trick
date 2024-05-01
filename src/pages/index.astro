@@ -41,10 +41,7 @@ const catsByDate = sortedGroupedCats.map(([date, cats]) => {
 		<p class="center">Meeting the cats of Ballard.</p>
 		<p class="center">🏆 3 cats in 1 day = a cat trick 🏆</p>
 		<p class="center">
-			<em
-				>Boots, Muffin, Royal, Sunny, Tiger, Thunder, and Turtle are nicknames. All other names are
-				real.</em
-			>
+			<em>* Cats are currently using nicknames until their real names are discovered. </em>
 		</p>
 
 		{catsByDate.length > 0 && <CatListByDate catsByDate={catsByDate} client:load />}
