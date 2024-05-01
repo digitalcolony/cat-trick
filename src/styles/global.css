@@ -42,3 +42,9 @@ figcaption {
 footer {
 	padding: 20px;
 }
+
+.leaderboard {
+	display: flex;
+	justify-content: center;
+	font-family: "Courier New", Courier, monospace;
+}

@@ -1,12 +1,27 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import CatListByDate from "../components/CatListByDate";
+import CatLeaderboard from "../components/CatLeaderboard.astro";
 
 // fetch cats from google sheet
 const res = await fetch(
 	"https://script.google.com/macros/s/AKfycbzy_i6slqQaiFsOE0Ks-u8xWshdrswLBXc2xelM6ep-f45fgtN9f_RQ8TfwnqLYCLRb-Q/exec"
 );
 const { data } = await res.json();
+
+const catsWithCount = data.reduce((acc, curr) => {
+	if (!acc[curr.cat]) {
+		acc[curr.cat] = 0;
+	}
+	acc[curr.cat]++;
+	return acc;
+}, {});
+
+// Top 10 cats by count
+const topCats = Object.entries(catsWithCount)
+	.sort((a, b) => (b[1] as number) - (a[1] as number))
+	.slice(0, 10)
+	.map(([cat, count]) => `${Number(count) < 10 ? `0${count}` : count}: ${cat}`);
 
 const groupedCats = data.reduce((acc, curr) => {
 	if (!acc[curr.date]) {
@@ -38,12 +53,13 @@ const catsByDate = sortedGroupedCats.map(([date, cats]) => {
 >
 	<main>
 		<h1 class="center">😻 Cat Trick</h1>
-		<p class="center">Meeting the cats of Ballard.</p>
-		<p class="center">🏆 3 cats in 1 day = a cat trick 🏆</p>
-		<p class="center">
-			<em>* Cats are currently using nicknames until their real names are discovered. </em>
-		</p>
+		<p class="center">Meeting the cats of Ballard. 3 cats in 1 day = a cat trick.</p>
 
+		<CatLeaderboard topCats={topCats} />
+
+		<p class="center">
+			<em>* Cats with an asterik are using a nickname until their real name is discovered. </em>
+		</p>
 		{catsByDate.length > 0 && <CatListByDate catsByDate={catsByDate} client:load />}
 	</main>
 </Layout>
