@@ -58,7 +58,7 @@ const catsByDate = sortedGroupedCats.map(([date, cats]) => {
 		<CatLeaderboard topCats={topCats} />
 
 		<p class="center">
-			<em>* Cats with an asterik are using a nickname until their real name is discovered. </em>
+			<em>* Cats with an asterisk are using a nickname until their real name is discovered. </em>
 		</p>
 		{catsByDate.length > 0 && <CatListByDate catsByDate={catsByDate} client:load />}
 	</main>
