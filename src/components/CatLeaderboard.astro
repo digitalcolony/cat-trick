@@ -2,7 +2,6 @@
 const { topCats } = Astro.props;
 ---
 
-<p class="center date">🥇 Leaderboard 🥇</p>
 <div class="leaderboard">
 	<ul style="list-style: none; text-align: center;">
 		{Object.entries(topCats).map(([name, count]) => <li style="text-align: left;">{count}</li>)}

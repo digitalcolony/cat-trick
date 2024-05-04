@@ -1,0 +1,53 @@
+---
+const { catsByDay, catCount, totalDays, catCountByCount } = Astro.props;
+
+interface CountObject {
+	[key: string]: number;
+}
+const catCountByCountTS: CountObject = catCountByCount;
+const totalCount = Object.values(catCountByCountTS).reduce((sum, count) => sum + count, 0);
+const totalCatTricks = Object.entries(catCountByCountTS)
+	.filter(([catCount, count]) => Number(catCount) >= 3)
+	.reduce((sum, [catCount, count]) => sum + count, 0);
+const daysWithNoCats = totalDays - totalCount;
+
+console.log(totalCatTricks);
+---
+
+<div class="leaderboard">
+	<ul style="list-style: none; text-align: center; ">
+		<ul style="list-style: none; text-align: center;">
+			<li style="text-align: left;"><strong>Total Pets:</strong> {catCount}</li>
+			<li style="text-align: left;"><strong>Total Days:</strong> {totalDays}</li>
+			<li>&nbsp;</li>
+			<li style="text-align: left;">
+				0 cat(s)&nbsp;&nbsp; {((Number(daysWithNoCats) / Number(totalDays)) * 100).toFixed(1)}% ({
+					Number(daysWithNoCats)
+				})
+			</li>
+			{
+				Object.entries(catCountByCount).map(([catCount, count]) => (
+					<li style="text-align: left;">
+						{catCount} cat(s)&nbsp;&nbsp;
+						{((Number(count) / Number(totalDays)) * 100).toFixed(1)}% ({Number(count)})
+					</li>
+				))
+			}
+			<li>&nbsp;</li>
+			<li style="text-align: left;">
+				<strong>Cat Tricks</strong>
+				{((Number(totalCatTricks) / Number(totalDays)) * 100).toFixed(1)}% ({
+					Number(totalCatTricks)
+				})
+			</li>
+			<li>&nbsp;</li>
+			{
+				Object.entries(catsByDay).map(([dayofWeek, count]) => (
+					<li style="text-align: left;">
+						({count}) {new Date(dayofWeek).toLocaleDateString("en-US", { weekday: "long" })}
+					</li>
+				))
+			}
+		</ul>
+	</ul>
+</div>
