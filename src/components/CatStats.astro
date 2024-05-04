@@ -11,7 +11,11 @@ const totalCatTricks = Object.entries(catCountByCountTS)
 	.reduce((sum, [catCount, count]) => sum + count, 0);
 const daysWithNoCats = totalDays - totalCount;
 
-console.log(totalCatTricks);
+const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+function convertToDayName(dayIndex) {
+	return dayNames[parseInt(dayIndex)];
+}
 ---
 
 <div class="leaderboard">
@@ -41,10 +45,11 @@ console.log(totalCatTricks);
 				})
 			</li>
 			<li>&nbsp;</li>
+
 			{
 				Object.entries(catsByDay).map(([dayofWeek, count]) => (
 					<li style="text-align: left;">
-						({count}) {new Date(dayofWeek).toLocaleDateString("en-US", { weekday: "long" })}
+						({count}) {convertToDayName(dayofWeek)}
 					</li>
 				))
 			}
