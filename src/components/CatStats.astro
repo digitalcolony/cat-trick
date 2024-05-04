@@ -13,9 +13,7 @@ const daysWithNoCats = totalDays - totalCount;
 
 const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-function convertToDayName(dayIndex) {
-	return dayNames[parseInt(dayIndex)];
-}
+const convertToDayName = (dayIndex) => dayNames[parseInt(dayIndex)];
 ---
 
 <div class="leaderboard">
