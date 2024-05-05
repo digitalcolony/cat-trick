@@ -81,7 +81,8 @@ const catCountByCount = catsByDate.reduce((acc, curr) => {
 >
 	<main>
 		<h1 class="center">😻 Cat Trick</h1>
-		<p class="center">Meeting the cats of Ballard. 3 cats in 1 day = a cat trick.</p>
+		<p class="center">Meeting the cats of Ballard.</p>
+		<p class="center">3 cats in 1 day = a cat trick! 🏆</p>
 
 		<p class="center date">📅 Cat Stats</p>
 		<CatStats
@@ -96,6 +97,9 @@ const catCountByCount = catsByDate.reduce((acc, curr) => {
 
 		<p class="center">
 			<em>* Cats with an asterisk are using a nickname until their real name is discovered. </em>
+		</p>
+		<p class="center">
+			<em>Frank the Tank and Gerald look almost identical and are hard to tell apart.</em>
 		</p>
 		{catsByDate.length > 0 && <CatListByDate catsByDate={catsByDate} client:load />}
 	</main>
