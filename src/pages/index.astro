@@ -13,17 +13,6 @@ const { data } = await res.json();
 // count rows in google sheet
 const catCount = data.length;
 
-// count cats by day of the week of date order by count descending
-const catsByDay = data.reduce((acc, curr) => {
-	const date = new Date(curr.date);
-	const day = date.getDay();
-	if (!acc[day]) {
-		acc[day] = 0;
-	}
-	acc[day]++;
-	return acc;
-}, {});
-
 const totalDays = Math.floor(
 	(Number(new Date()) - Number(new Date(data[0].date))) / (1000 * 60 * 60 * 24)
 );
@@ -72,6 +61,16 @@ const catCountByCount = catsByDate.reduce((acc, curr) => {
 	acc[count]++;
 	return acc;
 }, {});
+
+// cat count by month
+const catCountByMonth = data.reduce((acc, curr) => {
+	const month = new Date(curr.date).toLocaleString("default", { month: "long" });
+	if (!acc[month]) {
+		acc[month] = 0;
+	}
+	acc[month]++;
+	return acc;
+}, {});
 ---
 
 <Layout
@@ -87,9 +86,9 @@ const catCountByCount = catsByDate.reduce((acc, curr) => {
 		<p class="center date">📅 Cat Stats</p>
 		<CatStats
 			catCount={catCount}
-			catsByDay={catsByDay}
 			totalDays={totalDays}
 			catCountByCount={catCountByCount}
+			catCountByMonth={catCountByMonth}
 		/>
 
 		<p class="center date">🥇 Leaderboard</p>

@@ -8,6 +8,8 @@ body {
 main {
 	margin: 0 auto;
 	max-width: 1240px;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 .catlist {
 	margin-top: 40px;

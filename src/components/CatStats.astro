@@ -1,5 +1,5 @@
 ---
-const { catsByDay, catCount, totalDays, catCountByCount } = Astro.props;
+const { catCountByMonth, catCount, totalDays, catCountByCount } = Astro.props;
 
 interface CountObject {
 	[key: string]: number;
@@ -10,10 +10,6 @@ const totalCatTricks = Object.entries(catCountByCountTS)
 	.filter(([catCount, count]) => Number(catCount) >= 3)
 	.reduce((sum, [catCount, count]) => sum + count, 0);
 const daysWithNoCats = totalDays - totalCount;
-
-const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-const convertToDayName = (dayIndex) => dayNames[parseInt(dayIndex)];
 ---
 
 <div class="leaderboard">
@@ -43,11 +39,10 @@ const convertToDayName = (dayIndex) => dayNames[parseInt(dayIndex)];
 				})
 			</li>
 			<li>&nbsp;</li>
-
 			{
-				Object.entries(catsByDay).map(([dayofWeek, count]) => (
+				Object.entries(catCountByMonth).map(([month, count]) => (
 					<li style="text-align: left;">
-						({count}) {convertToDayName(dayofWeek)}
+						({Number(count) < 10 ? `0${Number(count)}` : `${Number(count)}`})&nbsp;{month}
 					</li>
 				))
 			}
