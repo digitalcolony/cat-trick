@@ -20,6 +20,7 @@ import stixthecat from "../assets/stix-the-cat.jpg";
 import sunny from "../assets/sunny.jpg";
 import tiger from "../assets/tiger.jpg";
 import thunder from "../assets/thunder.jpg";
+import tucker from "../assets/tucker.jpg";
 import turtle from "../assets/turtle.jpg";
 import nophoto from "../assets/nophoto.jpg";
 
@@ -124,6 +125,9 @@ export default function CatListByDate({ catsByDate }) {
 			case "thunder":
 				catImport = thunder;
 				isNickname = true;
+				break;
+			case "tucker":
+				catImport = tucker;
 				break;
 			case "turtle":
 				catImport = turtle;
