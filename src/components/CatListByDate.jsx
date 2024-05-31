@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 
 import akima from "../assets/akima.jpg";
 import boo from "../assets/boo.jpg";
-import boots from "../assets/boots.jpg";
+import karma from "../assets/karma.jpg";
 import buddy from "../assets/buddy.jpg";
 import captainjack from "../assets/captain-jack.jpg";
 import checkers from "../assets/checkers.jpg";
@@ -66,10 +66,6 @@ export default function CatListByDate({ catsByDate }) {
 			case "boo":
 				catImport = boo;
 				break;
-			case "boots":
-				catImport = boots;
-				isNickname = true;
-				break;
 			case "buddy":
 				catImport = buddy;
 				break;
@@ -93,6 +89,9 @@ export default function CatListByDate({ catsByDate }) {
 				break;
 			case "gizmo":
 				catImport = gizmo;
+				break;
+			case "karma":
+				catImport = karma;
 				break;
 			case "muffin":
 				catImport = muffin;
