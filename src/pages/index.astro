@@ -71,6 +71,18 @@ const catCountByMonth = data.reduce((acc, curr) => {
 	acc[month]++;
 	return acc;
 }, {});
+
+// cat count by month and year
+const catCountByMonthAndYear = data.reduce((acc, curr) => {
+	const month = new Date(curr.date).toLocaleString("default", { month: "long" });
+	const year = new Date(curr.date).getFullYear();
+	const key = `${year} ${month}`;
+	if (!acc[key]) {
+		acc[key] = 0;
+	}
+	acc[key]++;
+	return acc;
+}, {});
 ---
 
 <Layout
@@ -88,7 +100,7 @@ const catCountByMonth = data.reduce((acc, curr) => {
 			catCount={catCount}
 			totalDays={totalDays}
 			catCountByCount={catCountByCount}
-			catCountByMonth={catCountByMonth}
+			catCountByMonthAndYear={catCountByMonthAndYear}
 		/>
 
 		<p class="center date">🥇 Leaderboard</p>

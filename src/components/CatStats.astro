@@ -1,5 +1,5 @@
 ---
-const { catCountByMonth, catCount, totalDays, catCountByCount } = Astro.props;
+const { catCountByMonthAndYear, catCount, totalDays, catCountByCount } = Astro.props;
 
 interface CountObject {
 	[key: string]: number;
@@ -40,9 +40,9 @@ const daysWithNoCats = totalDays - totalCount;
 			</li>
 			<li>&nbsp;</li>
 			{
-				Object.entries(catCountByMonth).map(([month, count]) => (
+				Object.entries(catCountByMonthAndYear).map(([monthAndYear, count]) => (
 					<li style="text-align: left;">
-						({Number(count) < 10 ? `0${Number(count)}` : `${Number(count)}`})&nbsp;{month}
+						({Number(count) < 10 ? `0${Number(count)}` : `${Number(count)}`})&nbsp;{monthAndYear}
 					</li>
 				))
 			}
