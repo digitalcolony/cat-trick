@@ -24,6 +24,7 @@ import thunder from "../assets/thunder.jpg";
 import tucker from "../assets/tucker.jpg";
 import turtle from "../assets/turtle.jpg";
 import nophoto from "../assets/nophoto.jpg";
+import zoo from "../assets/zoo.jpg";
 
 export default function CatListByDate({ catsByDate }) {
 	const [visibleDays, setVisibleDays] = useState(3);
@@ -135,6 +136,9 @@ export default function CatListByDate({ catsByDate }) {
 			case "turtle":
 				catImport = turtle;
 				isNickname = true;
+				break;
+			case "zoo":
+				catImport = zoo;
 				break;
 			default:
 				catImport = nophoto;
