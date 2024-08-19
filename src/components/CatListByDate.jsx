@@ -17,6 +17,7 @@ import pezzetina from "../assets/pezzetina.jpg";
 import roket from "../assets/roket.jpg";
 import royal from "../assets/royal.jpg";
 import scarlett from "../assets/scarlett.jpg";
+import spice from "../assets/spice.jpg";
 import stixthecat from "../assets/stix-the-cat.jpg";
 import sunny from "../assets/sunny.jpg";
 import tiger from "../assets/tiger.jpg";
@@ -114,6 +115,9 @@ export default function CatListByDate({ catsByDate }) {
 				break;
 			case "scarlett":
 				catImport = scarlett;
+				break;
+			case "spice":
+				catImport = spice;
 				break;
 			case "stixthecat":
 				catImport = stixthecat;
