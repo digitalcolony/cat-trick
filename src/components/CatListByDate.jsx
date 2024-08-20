@@ -118,6 +118,7 @@ export default function CatListByDate({ catsByDate }) {
 				break;
 			case "spice":
 				catImport = spice;
+				isNickname = true;
 				break;
 			case "stixthecat":
 				catImport = stixthecat;
