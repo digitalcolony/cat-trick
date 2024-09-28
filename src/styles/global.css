@@ -50,3 +50,12 @@ footer {
 	justify-content: center;
 	font-family: "Courier New", Courier, monospace;
 }
+.error {
+	color: red;
+	font-weight: bold;
+}
+
+ul {
+	list-style-type: none;
+	padding: 0;
+}

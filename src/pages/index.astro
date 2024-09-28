@@ -1,88 +1,21 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import CatListByDate from "../components/CatListByDate";
 import CatLeaderboard from "../components/CatLeaderboard.astro";
 import CatStats from "../components/CatStats.astro";
+import CatWrapper from "../components/CatWrapper.astro";
 
-// fetch cats from google sheet
-const res = await fetch(
-	"https://script.google.com/macros/s/AKfycbzy_i6slqQaiFsOE0Ks-u8xWshdrswLBXc2xelM6ep-f45fgtN9f_RQ8TfwnqLYCLRb-Q/exec"
-);
-const { data } = await res.json();
+let data = [];
+let error;
 
-// count rows in google sheet
-const catCount = data.length;
-
-const totalDays = Math.floor(
-	(Number(new Date()) - Number(new Date(data[0].date))) / (1000 * 60 * 60 * 24)
-);
-
-const catsWithCount = data.reduce((acc, curr) => {
-	if (!acc[curr.cat]) {
-		acc[curr.cat] = 0;
-	}
-	acc[curr.cat]++;
-	return acc;
-}, {});
-
-// Top 10 cats by count
-const topCats = Object.entries(catsWithCount)
-	.sort((a, b) => (b[1] as number) - (a[1] as number))
-	.slice(0, 10)
-	.map(([cat, count]) => `(${Number(count) < 10 ? `0${count}` : count}) ${cat}`);
-
-const groupedCats = data.reduce((acc, curr) => {
-	if (!acc[curr.date]) {
-		acc[curr.date] = [];
-	}
-	acc[curr.date].push(curr.cat);
-	return acc;
-}, {});
-
-// sort groupedCats by date descending
-const sortedGroupedCats = Object.entries(groupedCats).sort((a, b) => {
-	const dateA = new Date(a[0]);
-	const dateB = new Date(b[0]);
-	return dateB.getTime() - dateA.getTime();
-});
-
-const catsByDate = sortedGroupedCats.map(([date, cats]) => {
-	return {
-		date,
-		cats,
-	};
-});
-
-const catCountByCount = catsByDate.reduce((acc, curr) => {
-	const count = (curr.cats as any[]).length;
-	if (!acc[count]) {
-		acc[count] = 0;
-	}
-	acc[count]++;
-	return acc;
-}, {});
-
-// cat count by month
-const catCountByMonth = data.reduce((acc, curr) => {
-	const month = new Date(curr.date).toLocaleString("default", { month: "long" });
-	if (!acc[month]) {
-		acc[month] = 0;
-	}
-	acc[month]++;
-	return acc;
-}, {});
-
-// cat count by month and year
-const catCountByMonthAndYear = data.reduce((acc, curr) => {
-	const month = new Date(curr.date).toLocaleString("default", { month: "long" });
-	const year = new Date(curr.date).getFullYear();
-	const key = `${year} ${month}`;
-	if (!acc[key]) {
-		acc[key] = 0;
-	}
-	acc[key]++;
-	return acc;
-}, {});
+try {
+	const res = await fetch(
+		"https://script.google.com/macros/s/AKfycbzy_i6slqQaiFsOE0Ks-u8xWshdrswLBXc2xelM6ep-f45fgtN9f_RQ8TfwnqLYCLRb-Q/exec"
+	);
+	const json = await res.json();
+	data = json.data;
+} catch (err) {
+	error = `We're sorry, but we couldn't load the data. Please try again later. Error: ${err.message}`;
+}
 ---
 
 <Layout
@@ -95,26 +28,22 @@ const catCountByMonthAndYear = data.reduce((acc, curr) => {
 		<p class="center">Meeting the cats of Ballard.</p>
 		<p class="center">3 cats in 1 day = a cat trick! 🏆</p>
 
+		{error ? <p class="center error">{error}</p> : ""}
+
 		<p class="center date">📅 Cat Stats</p>
-		<CatStats
-			catCount={catCount}
-			totalDays={totalDays}
-			catCountByCount={catCountByCount}
-			catCountByMonthAndYear={catCountByMonthAndYear}
-		/>
+		{error ? "" : data.length > 0 && <CatStats data={data} />}
 
 		<p class="center date">🥇 Leaderboard</p>
-		<CatLeaderboard topCats={topCats} />
+		{error ? "" : data.length > 0 && <CatLeaderboard data={data} />}
 
-		<p class="center">
-			<em>* Cats with an asterisk are using a nickname until their real name is discovered. </em>
-		</p>
-		<p class="center">
-			<em>Frank the Tank and Gerald look almost identical and are hard to tell apart.</em>
-		</p>
-		<p class="center">
-			<em>Captain Jack passed on July 22, 2024. 😿</em>
-		</p>
-		{catsByDate.length > 0 && <CatListByDate catsByDate={catsByDate} client:load />}
+		<ul class="center">
+			<li>
+				<em>* Cats with an asterisk are using a nickname until their real name is discovered. </em>
+			</li>
+			<li><em>Frank the Tank and Gerald look almost identical and are hard to tell apart.</em></li>
+			<li><em>Captain Jack passed on July 22, 2024. 😿</em></li>
+		</ul>
+
+		{error ? "" : data.length > 0 && <CatWrapper data={data} />}
 	</main>
 </Layout>

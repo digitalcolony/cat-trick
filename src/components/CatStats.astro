@@ -1,5 +1,54 @@
 ---
-const { catCountByMonthAndYear, catCount, totalDays, catCountByCount } = Astro.props;
+const { data } = Astro.props;
+
+const catCount = data.length;
+
+const totalDays = Math.floor(
+	(Number(new Date()) - Number(new Date(data[0].date))) / (1000 * 60 * 60 * 24)
+);
+
+const groupedCats = data.reduce((acc, curr) => {
+	if (!acc[curr.date]) {
+		acc[curr.date] = [];
+	}
+	acc[curr.date].push(curr.cat);
+	return acc;
+}, {});
+
+// sort groupedCats by date descending
+const sortedGroupedCats = Object.entries(groupedCats).sort((a, b) => {
+	const dateA = new Date(a[0]);
+	const dateB = new Date(b[0]);
+	return dateB.getTime() - dateA.getTime();
+});
+
+const catsByDate = sortedGroupedCats.map(([date, cats]) => {
+	return {
+		date,
+		cats,
+	};
+});
+
+const catCountByCount = catsByDate.reduce((acc, curr) => {
+	const count = (curr.cats as any[]).length;
+	if (!acc[count]) {
+		acc[count] = 0;
+	}
+	acc[count]++;
+	return acc;
+}, {});
+
+// cat count by month and year
+const catCountByMonthAndYear = data.reduce((acc, curr) => {
+	const month = new Date(curr.date).toLocaleString("default", { month: "long" });
+	const year = new Date(curr.date).getFullYear();
+	const key = `${year} ${month}`;
+	if (!acc[key]) {
+		acc[key] = 0;
+	}
+	acc[key]++;
+	return acc;
+}, {});
 
 interface CountObject {
 	[key: string]: number;
