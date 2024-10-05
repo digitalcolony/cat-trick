@@ -10,9 +10,9 @@ const catsWithCount = data.reduce((acc, curr) => {
 }, {});
 
 const topCats = Object.entries(catsWithCount)
-	.sort((a, b) => b[1] - a[1])
+	.sort((a, b) => Number(b[1]) - Number(a[1]))
 	.slice(0, topCount)
-	.map(([cat, count]) => `(${count < 10 ? `0${count}` : count}) ${cat}`);
+	.map(([cat, count]) => `(${Number(count) < 10 ? `0${count}` : count}) ${cat}`);
 ---
 
 <div class="leaderboard">
