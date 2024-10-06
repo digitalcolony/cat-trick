@@ -20,7 +20,8 @@ import royal from "../assets/royal.jpg";
 import scarlett from "../assets/scarlett.jpg";
 import spice from "../assets/spice.jpg";
 import stixthecat from "../assets/stix-the-cat.jpg";
-import sunny from "../assets/sunny.jpg";
+import stormy from "../assets/stormy.jpg";
+import ravi from "../assets/ravi.jpg";
 import tiger from "../assets/tiger.jpg";
 import thunder from "../assets/thunder.jpg";
 import tucker from "../assets/tucker.jpg";
@@ -110,6 +111,9 @@ export default function CatListByDate({ catsByDate }) {
 			case "pezzetina":
 				catImport = pezzetina;
 				break;
+			case "ravi":
+				catImport = ravi;
+				break;
 			case "roket":
 				catImport = roket;
 				break;
@@ -127,8 +131,8 @@ export default function CatListByDate({ catsByDate }) {
 			case "stixthecat":
 				catImport = stixthecat;
 				break;
-			case "sunny":
-				catImport = sunny;
+			case "stormy":
+				catImport = stormy;
 				isNickname = true;
 				break;
 			case "tiger":
