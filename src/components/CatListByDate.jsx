@@ -27,6 +27,7 @@ import thunder from "../assets/thunder.jpg";
 import tucker from "../assets/tucker.jpg";
 import turtle from "../assets/turtle.jpg";
 import nophoto from "../assets/nophoto.jpg";
+import wiggles from "../assets/wiggles.jpg";
 import zoo from "../assets/zoo.jpg";
 
 export default function CatListByDate({ catsByDate }) {
@@ -148,6 +149,10 @@ export default function CatListByDate({ catsByDate }) {
 				break;
 			case "turtle":
 				catImport = turtle;
+				isNickname = true;
+				break;
+			case "wiggles":
+				catImport = wiggles;
 				isNickname = true;
 				break;
 			case "zoo":
