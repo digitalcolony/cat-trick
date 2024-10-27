@@ -14,6 +14,8 @@ import gizmo from "../assets/gizmo.jpg";
 import kingsimon from "../assets/king-simon.jpg";
 import mouse from "../assets/mouse.jpg";
 import muffin from "../assets/muffin.jpg";
+import nophoto from "../assets/nophoto.jpg";
+import poppy from "../assets/poppy.jpg";
 import pezzetina from "../assets/pezzetina.jpg";
 import roket from "../assets/roket.jpg";
 import royal from "../assets/royal.jpg";
@@ -26,8 +28,6 @@ import tiger from "../assets/tiger.jpg";
 import thunder from "../assets/thunder.jpg";
 import tucker from "../assets/tucker.jpg";
 import turtle from "../assets/turtle.jpg";
-import nophoto from "../assets/nophoto.jpg";
-import wiggles from "../assets/wiggles.jpg";
 import zoo from "../assets/zoo.jpg";
 
 export default function CatListByDate({ catsByDate }) {
@@ -112,6 +112,9 @@ export default function CatListByDate({ catsByDate }) {
 			case "pezzetina":
 				catImport = pezzetina;
 				break;
+			case "poppy":
+				catImport = poppy;
+				break;
 			case "ravi":
 				catImport = ravi;
 				break;
@@ -149,10 +152,6 @@ export default function CatListByDate({ catsByDate }) {
 				break;
 			case "turtle":
 				catImport = turtle;
-				isNickname = true;
-				break;
-			case "wiggles":
-				catImport = wiggles;
 				isNickname = true;
 				break;
 			case "zoo":
