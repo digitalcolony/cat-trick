@@ -10,9 +10,13 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/netlify": "^5.5.4",
-    "@astrojs/react": "^3.6.2",
-    "astro": "^4.16.7",
-    "astro-meta-tags": "^0.2.1"
+    "@astrojs/netlify": "^6.0.0",
+    "@astrojs/react": "^4.0.0",
+    "@vercel/nft": "^0.27.7",
+    "astro": "^5.0.3",
+    "glob": "^9.3.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rimraf": "^4.4.1"
   }
 }
