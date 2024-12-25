@@ -1,12 +1,13 @@
 ---
 import CatListByDate from "../components/CatListByDate";
-const { data } = Astro.props;
+import { getCollection } from "astro:content";
+const rows = await getCollection("rows");
 
-const groupedCats = data.reduce((acc, curr) => {
-	if (!acc[curr.date]) {
-		acc[curr.date] = [];
+const groupedCats = rows.reduce((acc, curr) => {
+	if (!acc[curr.data.date]) {
+		acc[curr.data.date] = [];
 	}
-	acc[curr.date].push(curr.cat);
+	acc[curr.data.date].push(curr.data.cat);
 	return acc;
 }, {});
 

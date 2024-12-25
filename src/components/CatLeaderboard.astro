@@ -1,11 +1,13 @@
 ---
-const { data, topCount } = Astro.props;
+import { getCollection } from "astro:content";
+const rows = await getCollection("rows");
+const topCount = 99;
 
-const catsWithCount = data.reduce((acc, curr) => {
-	if (!acc[curr.cat]) {
-		acc[curr.cat] = 0;
+const catsWithCount = rows.reduce((acc, curr) => {
+	if (!acc[curr.data.cat]) {
+		acc[curr.data.cat] = 0;
 	}
-	acc[curr.cat]++;
+	acc[curr.data.cat]++;
 	return acc;
 }, {});
 
@@ -15,6 +17,7 @@ const topCats = Object.entries(catsWithCount)
 	.map(([cat, count]) => `(${Number(count) < 10 ? `0${count}` : count}) ${cat}`);
 ---
 
+<p class="center date">🥇 2024 Leaderboard</p>
 <div class="leaderboard">
 	<ul style="list-style: none; text-align: center;">
 		{Object.entries(topCats).map(([name, count]) => <li style="text-align: left;">{count}</li>)}

@@ -61,106 +61,43 @@ export default function CatListByDate({ catsByDate }) {
 		return `${dayOfWeek} ${month} ${day}, ${year}`;
 	}
 
+	const catImages = {
+		akima,
+		boo,
+		buddy,
+		captainjack,
+		checkers,
+		chucky,
+		emmy,
+		frankthetank,
+		gerald,
+		gizmo,
+		karma,
+		kingsimon,
+		mouse,
+		muffin,
+		pezzetina,
+		poppy,
+		ravi,
+		roket,
+		royal,
+		scarlett,
+		spice,
+		stixthecat,
+		stormy,
+		tiger,
+		thunder,
+		tucker,
+		turtle,
+		zoo,
+	};
+
+	const nicknames = new Set(["muffin", "royal", "spice", "stormy", "tiger", "thunder", "turtle"]);
+
 	function getCat(cat) {
-		let catImport = cat.replace(/\s+/g, "").toLowerCase();
-		let isNickname = false;
-
-		switch (catImport) {
-			case "akima":
-				catImport = akima;
-				break;
-			case "boo":
-				catImport = boo;
-				break;
-			case "buddy":
-				catImport = buddy;
-				break;
-			case "captainjack":
-				catImport = captainjack;
-				break;
-			case "checkers":
-				catImport = checkers;
-				break;
-			case "chucky":
-				catImport = chucky;
-				break;
-			case "emmy":
-				catImport = emmy;
-				break;
-			case "frankthetank":
-				catImport = frankthetank;
-				break;
-			case "gerald":
-				catImport = gerald;
-				break;
-			case "gizmo":
-				catImport = gizmo;
-				break;
-			case "karma":
-				catImport = karma;
-				break;
-			case "kingsimon":
-				catImport = kingsimon;
-				break;
-			case "mouse":
-				catImport = mouse;
-				break;
-			case "muffin":
-				catImport = muffin;
-				isNickname = true;
-				break;
-			case "pezzetina":
-				catImport = pezzetina;
-				break;
-			case "poppy":
-				catImport = poppy;
-				break;
-			case "ravi":
-				catImport = ravi;
-				break;
-			case "roket":
-				catImport = roket;
-				break;
-			case "royal":
-				catImport = royal;
-				isNickname = true;
-				break;
-			case "scarlett":
-				catImport = scarlett;
-				break;
-			case "spice":
-				catImport = spice;
-				isNickname = true;
-				break;
-			case "stixthecat":
-				catImport = stixthecat;
-				break;
-			case "stormy":
-				catImport = stormy;
-				isNickname = true;
-				break;
-			case "tiger":
-				catImport = tiger;
-				isNickname = true;
-				break;
-			case "thunder":
-				catImport = thunder;
-				isNickname = true;
-				break;
-			case "tucker":
-				catImport = tucker;
-				break;
-			case "turtle":
-				catImport = turtle;
-				isNickname = true;
-				break;
-			case "zoo":
-				catImport = zoo;
-				break;
-			default:
-				catImport = nophoto;
-		}
-
+		const catKey = cat.replace(/\s+/g, "").toLowerCase();
+		const catImport = catImages[catKey] || nophoto;
+		const isNickname = nicknames.has(catKey);
 		return { catImport, isNickname };
 	}
 

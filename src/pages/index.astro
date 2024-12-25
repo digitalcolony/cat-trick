@@ -1,21 +1,9 @@
 ---
+import Header from "../components/Header.astro";
 import Layout from "../layouts/Layout.astro";
 import CatLeaderboard from "../components/CatLeaderboard.astro";
 import CatStats from "../components/CatStats.astro";
 import CatWrapper from "../components/CatWrapper.astro";
-
-let data = [];
-let error;
-
-try {
-	const res = await fetch(
-		"https://script.google.com/macros/s/AKfycbzy_i6slqQaiFsOE0Ks-u8xWshdrswLBXc2xelM6ep-f45fgtN9f_RQ8TfwnqLYCLRb-Q/exec"
-	);
-	const json = await res.json();
-	data = json.data;
-} catch (err) {
-	error = `We're sorry, but we couldn't load the data. Please try again later. Error: ${err.message}`;
-}
 ---
 
 <Layout
@@ -24,26 +12,9 @@ try {
 	url=""
 >
 	<main>
-		<h1 class="center">😻 Cat Trick</h1>
-		<p class="center">Meeting the cats of Ballard.</p>
-		<p class="center">3 cats in 1 day = a cat trick! 🏆</p>
-
-		{error ? <p class="center error">{error}</p> : ""}
-
-		<p class="center date">📅 Cat Stats</p>
-		{error ? "" : data.length > 0 && <CatStats data={data} />}
-
-		<p class="center date">🥇 Top 15 Leaderboard</p>
-		{error ? "" : data.length > 0 && <CatLeaderboard data={data} topCount={15} />}
-
-		<ul class="center">
-			<li>
-				<em>* Cats with an asterisk are using a nickname until their real name is discovered. </em>
-			</li>
-			<li><em>Frank the Tank and Gerald look almost identical and are hard to tell apart.</em></li>
-			<li><em>Captain Jack, Boo, and Buddy passed in 2024. 😿</em></li>
-		</ul>
-
-		{error ? "" : data.length > 0 && <CatWrapper data={data} />}
+		<Header />
+		<CatStats />
+		<CatLeaderboard />
+		<CatWrapper />
 	</main>
 </Layout>

@@ -1,17 +1,18 @@
 ---
-const { data } = Astro.props;
+import { getCollection } from "astro:content";
+const rows = await getCollection("rows");
 
-const catCount = data.length;
+const catCount = rows.length;
 
 const totalDays = Math.floor(
-	(Number(new Date()) - Number(new Date(data[0].date))) / (1000 * 60 * 60 * 24)
+	(Number(new Date()) - Number(new Date(rows[0].data.date))) / (1000 * 60 * 60 * 24)
 );
 
-const groupedCats = data.reduce((acc, curr) => {
-	if (!acc[curr.date]) {
-		acc[curr.date] = [];
+const groupedCats = rows.reduce((acc, curr) => {
+	if (!acc[curr.data.date]) {
+		acc[curr.data.date] = [];
 	}
-	acc[curr.date].push(curr.cat);
+	acc[curr.data.date].push(curr.data.cat);
 	return acc;
 }, {});
 
@@ -39,9 +40,9 @@ const catCountByCount = catsByDate.reduce((acc, curr) => {
 }, {});
 
 // cat count by month and year
-const catCountByMonthAndYear = data.reduce((acc, curr) => {
-	const month = new Date(curr.date).toLocaleString("default", { month: "long" });
-	const year = new Date(curr.date).getFullYear();
+const catCountByMonthAndYear = rows.reduce((acc, curr) => {
+	const month = new Date(curr.data.date).toLocaleString("default", { month: "long" });
+	const year = new Date(curr.data.date).getFullYear();
 	const key = `${year} ${month}`;
 	if (!acc[key]) {
 		acc[key] = 0;
@@ -55,9 +56,10 @@ interface CountObject {
 }
 const catCountByCountTS: CountObject = catCountByCount;
 const totalCount = Object.values(catCountByCountTS).reduce((sum, count) => sum + count, 0);
-const totalCatTricks = Object.entries(catCountByCountTS)
-	.filter(([catCount, count]) => Number(catCount) >= 3)
-	.reduce((sum, [catCount, count]) => sum + count, 0);
+const totalCatTricks = Object.entries(catCountByCountTS).reduce(
+	(sum, [catCount, count]) => (Number(catCount) >= 3 ? sum + count : sum),
+	0
+);
 const daysWithNoCats = totalDays - totalCount;
 ---
 
